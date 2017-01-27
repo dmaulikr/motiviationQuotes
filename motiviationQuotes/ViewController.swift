@@ -10,15 +10,23 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    @IBOutlet weak var quoteTextLabel: UILabel!
+    @IBOutlet weak var authorTextLabel: UILabel!
+    @IBOutlet weak var authorImageView: UIImageView!
+    
+    var quotesMemory = QuotesMemory()
+    
+    @IBAction func getNewQuoteTapped(_ sender: Any)
+    {
+        let randomQuote = quotesMemory.getRandomQuote()
+        let author = quotesMemory.getAuthor(for: randomQuote)
+        let authorImageName = quotesMemory.getImageName(for: author)
+        
+        quoteTextLabel.text = randomQuote
+        authorTextLabel.text = author
+        authorImageView.image = UIImage(named: authorImageName)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
 
 
 }
